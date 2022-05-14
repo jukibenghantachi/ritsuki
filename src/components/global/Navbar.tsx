@@ -26,6 +26,8 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
         <div className="relative">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
+            width={17}
+            height={17}
             color="#475569"
             className="absolute top-1/2 -translate-y-1/2 left-3"
           />
