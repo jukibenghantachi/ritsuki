@@ -38,7 +38,7 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
           />
         </div>
       </div>
-      <div className="h-full bg-background py-20 px-40">{children}</div>
+      <div className="h-full bg-background py-[69px] px-40">{children}</div>
     </div>
   );
 };

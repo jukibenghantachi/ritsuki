@@ -27,7 +27,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col gap-14">
+      <div className="mt-[1.25rem] flex flex-col gap-12">
         <Section
           name="Spring Season"
           logo={faCalendarDays}
