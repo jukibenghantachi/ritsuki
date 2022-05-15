@@ -1,14 +1,14 @@
 import { FC } from 'react';
 import { useQuery, UseQueryResult } from 'react-query';
 import { Card } from './Card';
-import { getSeasonsNow } from '../../services/home';
+import { getTopAnime } from '../../services/home';
 import { DataAnime } from '../../types';
 
-export const Season: FC = () => {
+export const TopAnime: FC = () => {
   const { data, isLoading }: UseQueryResult<DataAnime, unknown> = useQuery(
-    ['anime', { type: 'season-now' }],
-    getSeasonsNow
+    ['anime', { type: 'top-anime' }],
+    getTopAnime
   );
 
-  return <Card name="Spring Season" data={data} isLoading={isLoading} />;
+  return <Card name="Top Anime" data={data} isLoading={isLoading} />;
 };

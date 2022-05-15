@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 
 import { Season } from '../../components/home/Season';
+import { TopAnime } from '../../components/home/TopAnime';
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +15,10 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Season />
+      <div className="flex flex-col gap-14">
+        <Season />
+        <TopAnime />
+      </div>
     </div>
   );
 };
