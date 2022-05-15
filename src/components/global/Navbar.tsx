@@ -9,18 +9,20 @@ type NavbarProps = {
 export const Navbar: FC<NavbarProps> = ({ children }) => {
   return (
     <div className="flex flex-col gap-5 font-medium">
-      <div className="flex items-center justify-between top-0 fixed bg-white py-4 px-40 w-full z-50 border border-slate-300">
+      <div className="flex items-center justify-between top-0 fixed bg-white py-4 px-40 w-full z-50 border-b border-slate-300">
         <div className="flex items-center gap-5">
           <p className="text-xl text-orange-600 font-bold">Ritsuki</p>
           <ul className="flex items-center gap-1">
-            {['Home', 'Gallery', 'Random', 'About'].map((r: string, i: Key) => (
-              <li
-                key={i}
-                className="text-gray-700 text-sm hover:rounded-md hover:bg-slate-100/80 py-1 px-3 cursor-pointer"
-              >
-                {r}
-              </li>
-            ))}
+            {['Home', 'Gallery', 'Random', 'About'].map(
+              (list: string, id: Key) => (
+                <li
+                  key={id}
+                  className="text-gray-700 text-sm hover:rounded-md hover:bg-slate-100/80 py-1 px-3 cursor-pointer"
+                >
+                  {list}
+                </li>
+              )
+            )}
           </ul>
         </div>
         <div className="relative">
