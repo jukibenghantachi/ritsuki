@@ -1,10 +1,21 @@
 import type { NextPage } from 'next';
+import { useQuery, UseQueryResult } from 'react-query';
 import Head from 'next/head';
 
-import { Season } from '../../components/home/Season';
-import { TopAnime } from '../../components/home/TopAnime';
+import { Section } from '../../components/home/Section';
+import { getSeasonsNow, getTopAnime } from '../../services/home';
+import { DataAnime } from '../../types';
 
 const Home: NextPage = () => {
+  const qSeasonsNow: UseQueryResult<DataAnime, unknown> = useQuery(
+    ['anime', { type: 'season-now' }],
+    getSeasonsNow
+  );
+  const qTopAnime: UseQueryResult<DataAnime, unknown> = useQuery(
+    ['anime', { type: 'top-anime' }],
+    getTopAnime
+  );
+
   return (
     <div className="h-full w-full bg-background">
       <Head>
@@ -16,8 +27,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col gap-14">
-        <Season />
-        <TopAnime />
+        <Section
+          name="Spring Season"
+          data={qSeasonsNow.data}
+          isLoading={qSeasonsNow.isLoading}
+        />
+        <Section
+          name="Top Anime"
+          data={qTopAnime.data}
+          isLoading={qTopAnime.isLoading}
+        />
       </div>
     </div>
   );

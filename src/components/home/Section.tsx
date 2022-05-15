@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Key } from 'react';
 import { Data, DataAnime } from '../../types';
 
-type CardProps = {
+type SectionProps = {
   name: string;
   data: DataAnime | undefined;
   isLoading: boolean;
 };
 
-export const Card: FC<CardProps> = ({ name, data, isLoading }) => {
+export const Section: FC<SectionProps> = ({ name, data, isLoading }) => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex items-center justify-between rounded-lg bg-white py-2 px-5">
