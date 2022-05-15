@@ -6,7 +6,7 @@ import { TopAnime } from '../../components/home/TopAnime';
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-background w-full h-full">
+    <div className="h-full w-full bg-background">
       <Head>
         <title>Ritsuki - Anime and Manga Tracker</title>
         <meta
