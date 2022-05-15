@@ -4,13 +4,13 @@ import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
 import { Data, DataAnime } from '../../types';
 
-type SectionProps = {
+type SectionLeftProps = {
   name: string;
   logo: IconProp;
   query: UseQueryResult<DataAnime, unknown>;
 };
 
-export const Section: FC<SectionProps> = ({ name, logo, query }) => {
+export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {
   const { data, isLoading } = query;
 
   return (
@@ -36,14 +36,14 @@ export const Section: FC<SectionProps> = ({ name, logo, query }) => {
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <div className="flex justify-between gap-5 overflow-x-auto">
+        <div className="flex justify-between flex-wrap gap-2">
           {data?.data.map((res: Data, id: Key) => (
             <div key={id}>
               <img
                 src={res.images.webp.large_image_url}
-                className="h-80 w-56 rounded-lg object-cover"
+                className="h-52 w-36 rounded-lg object-cover"
               />
-              <div className="mt-2 mb-3 flex w-56 flex-col gap-1">
+              <div className="mt-2 mb-3 flex w-36 flex-col gap-1">
                 <p className="truncate text-sm font-bold text-slate-700">
                   {res.title}
                 </p>
