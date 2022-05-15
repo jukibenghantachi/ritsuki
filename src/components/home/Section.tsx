@@ -1,15 +1,18 @@
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Key } from 'react';
+import { UseQueryResult } from 'react-query';
 import { Data, DataAnime } from '../../types';
 
 type SectionProps = {
   name: string;
-  data: DataAnime | undefined;
-  isLoading: boolean;
+  logo: IconProp;
+  query: UseQueryResult<DataAnime, unknown>;
 };
 
-export const Section: FC<SectionProps> = ({ name, data, isLoading }) => {
+export const Section: FC<SectionProps> = ({ name, logo, query }) => {
+  const { data, isLoading } = query;
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex items-center justify-between rounded-lg bg-white py-2 px-5">
@@ -17,7 +20,7 @@ export const Section: FC<SectionProps> = ({ name, data, isLoading }) => {
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 place-content-center items-center rounded-md bg-orange-600">
               <FontAwesomeIcon
-                icon={faCalendarDays}
+                icon={logo}
                 width={20}
                 height={20}
                 color="#FFFFFF"

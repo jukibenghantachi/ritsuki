@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { useQuery, UseQueryResult } from 'react-query';
 import Head from 'next/head';
+import { faCalendarDays, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 import { Section } from '../../components/home/Section';
 import { getSeasonsNow, getTopAnime } from '../../services/home';
@@ -29,14 +30,10 @@ const Home: NextPage = () => {
       <div className="flex flex-col gap-14">
         <Section
           name="Spring Season"
-          data={qSeasonsNow.data}
-          isLoading={qSeasonsNow.isLoading}
+          logo={faCalendarDays}
+          query={qSeasonsNow}
         />
-        <Section
-          name="Top Anime"
-          data={qTopAnime.data}
-          isLoading={qTopAnime.isLoading}
-        />
+        <Section name="Top Anime" logo={faTrophy} query={qTopAnime} />
       </div>
     </div>
   );
