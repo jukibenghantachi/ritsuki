@@ -15,5 +15,5 @@ export const api = async ({
     method,
     body: JSON.stringify(body),
   });
-  return await res.json();
+  return res.json();
 };
