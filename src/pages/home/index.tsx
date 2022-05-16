@@ -14,6 +14,7 @@ import {
   getSeasonsNow,
   getTopAnime,
 } from '../../services/home';
+import { useGetSeasons } from '../../hooks/seasons';
 import { DataAnime, Recommendation } from '../../types';
 
 const Home: NextPage = () => {
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
       ['anime', { type: 'recommendations-anime' }],
       getAnimeRecommendations
     );
+  const season = useGetSeasons();
 
   return (
     <div className="bg-background">
@@ -44,7 +46,7 @@ const Home: NextPage = () => {
       <div className="mt-[1.25rem] flex justify-between gap-7">
         <div className="flex w-[70%] flex-col gap-12">
           <SectionLeft
-            name="Spring Season"
+            name={`${season} Season`}
             logo={faCalendarDays}
             query={qSeasonsNow}
           />
