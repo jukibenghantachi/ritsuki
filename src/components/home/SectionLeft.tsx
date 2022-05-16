@@ -36,7 +36,7 @@ export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {
       {isLoading ? (
         <p>Loading</p>
       ) : (
-        <div className="flex justify-between flex-wrap gap-2">
+        <div className="flex flex-wrap justify-between gap-2">
           {data?.data.map((res: Data, id: Key) => (
             <div key={id}>
               <img

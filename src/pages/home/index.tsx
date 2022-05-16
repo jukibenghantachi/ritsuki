@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="mt-[1.25rem] flex justify-between gap-7">
-        <div className="flex flex-col gap-12 w-[70%]">
+        <div className="flex w-[70%] flex-col gap-12">
           <SectionLeft
             name="Spring Season"
             logo={faCalendarDays}
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
           />
           <SectionLeft name="Top Anime" logo={faTrophy} query={qTopAnime} />
         </div>
-        <div className="flex flex-col gap-5 w-[30%]">
+        <div className="flex w-[30%] flex-col gap-5">
           <SectionRight
             name="Recommendation"
             logo={faStar}

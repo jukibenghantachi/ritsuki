@@ -34,13 +34,13 @@ export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
         <div className="flex flex-col gap-5">
           {data?.data.slice(0, 5).map((res, id: Key) => (
             <div key={id} className="flex flex-col gap-5">
-              {res.entry.map((e) => (
-                <div key={id} className="flex items-center w-full">
+              {res.entry.map((e, i: Key) => (
+                <div key={i} className="flex w-full items-center gap-2">
                   <img
                     src={e.images.webp.large_image_url}
-                    className="h-14 w-14 rounded-full object-cover"
+                    className="h-14 w-14 flex-shrink-0 rounded-full object-cover"
                   />
-                  <div className="mt-2 mb-3 mx-2 flex flex-col gap-1 w-52">
+                  <div className="w-[calc(100%-56px-0.5rem)]">
                     <p className="truncate text-sm font-bold text-slate-700">
                       {e.title}
                     </p>
