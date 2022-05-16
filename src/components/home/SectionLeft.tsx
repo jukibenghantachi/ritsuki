@@ -38,10 +38,10 @@ export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {
       ) : (
         <div className="flex flex-wrap justify-between gap-2">
           {data?.data.map((res: Data, id: Key) => (
-            <div key={id}>
+            <div className="group cursor-pointer" key={id}>
               <img
                 src={res.images.webp.large_image_url}
-                className="h-52 w-36 rounded-lg object-cover"
+                className="h-52 w-36 rounded-lg object-cover group-hover:shadow-md"
               />
               <div className="mt-2 mb-3 flex w-36 flex-col gap-1">
                 <p className="truncate text-sm font-bold text-slate-700">
