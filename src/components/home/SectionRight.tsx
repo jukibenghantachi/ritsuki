@@ -40,7 +40,7 @@ export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
                     src={e.images.webp.large_image_url}
                     className="h-14 w-14 flex-shrink-0 rounded-full object-cover"
                   />
-                  <div className="w-[calc(100%-56px-0.5rem)]">
+                  <div className="w-[calc(100%-4rem)]">
                     <p className="truncate text-sm font-bold text-slate-700">
                       {e.title}
                     </p>
