@@ -2,12 +2,12 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
-import { Data, DataAnime } from '../../types';
+import { Recommendation } from '../../types';
 
 type SectionRightProps = {
   name: string;
   logo: IconProp;
-  query: UseQueryResult<DataAnime, unknown>;
+  query: UseQueryResult<Recommendation, unknown>;
 };
 
 export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
@@ -32,20 +32,21 @@ export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
         <p>Loading</p>
       ) : (
         <div className="flex flex-col gap-5">
-          {data?.data.map((res: Data, id: Key) => (
-            <div key={id} className="flex items-center w-full">
-              <img
-                src={res.images.webp.large_image_url}
-                className="h-14 w-14 rounded-full object-cover"
-              />
-              <div className="mt-2 mb-3 mx-2 flex flex-col gap-1 w-52">
-                <p className="truncate text-sm font-bold text-slate-700">
-                  {res.title}
-                </p>
-                <p className="truncate text-xs text-slate-700">
-                  {res.genres.map((m) => m.name).toString()}
-                </p>
-              </div>
+          {data?.data.slice(0, 5).map((res, id: Key) => (
+            <div key={id} className="flex flex-col gap-5">
+              {res.entry.map((e) => (
+                <div key={id} className="flex items-center w-full">
+                  <img
+                    src={e.images.webp.large_image_url}
+                    className="h-14 w-14 rounded-full object-cover"
+                  />
+                  <div className="mt-2 mb-3 mx-2 flex flex-col gap-1 w-52">
+                    <p className="truncate text-sm font-bold text-slate-700">
+                      {e.title}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </div>

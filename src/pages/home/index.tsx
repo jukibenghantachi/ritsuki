@@ -9,18 +9,27 @@ import {
 
 import { SectionLeft } from '../../components/home/SectionLeft';
 import { SectionRight } from '../../components/home/SectionRight';
-import { getSeasonsNow, getTopAnime } from '../../services/home';
-import { DataAnime } from '../../types';
+import {
+  getAnimeRecommendations,
+  getSeasonsNow,
+  getTopAnime,
+} from '../../services/home';
+import { DataAnime, Recommendation } from '../../types';
 
 const Home: NextPage = () => {
   const qSeasonsNow: UseQueryResult<DataAnime, unknown> = useQuery(
-    ['anime', { type: 'season-now' }],
+    ['anime', { type: 'seasons-now' }],
     getSeasonsNow
   );
   const qTopAnime: UseQueryResult<DataAnime, unknown> = useQuery(
     ['anime', { type: 'top-anime' }],
     getTopAnime
   );
+  const qRecommendationAnime: UseQueryResult<Recommendation, unknown> =
+    useQuery(
+      ['anime', { type: 'recommendations-anime' }],
+      getAnimeRecommendations
+    );
 
   return (
     <div className="bg-background">
@@ -45,7 +54,7 @@ const Home: NextPage = () => {
           <SectionRight
             name="Recommendation"
             logo={faStar}
-            query={qSeasonsNow}
+            query={qRecommendationAnime}
           />
         </div>
       </div>
