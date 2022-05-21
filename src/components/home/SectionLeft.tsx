@@ -40,7 +40,7 @@ export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {
         <div className="flex flex-wrap justify-between gap-2">
           {data?.data.map((res: Data, id: Key) => (
             <div className="group cursor-pointer" key={id}>
-              <Link href={'/anime/' + res.mal_id}>
+              <Link href={`/anime/${res.mal_id}`}>
                 <a>
                   <img
                     src={res.images.webp.large_image_url}
