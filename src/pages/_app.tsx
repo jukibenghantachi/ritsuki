@@ -1,18 +1,21 @@
 import type { AppProps } from 'next/app';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { useState } from 'react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 
 import { Navbar } from '../components/global/Navbar';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Navbar>
-        <Component {...pageProps} />
-      </Navbar>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Navbar>
+          <Component {...pageProps} />
+        </Navbar>
+      </Hydrate>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

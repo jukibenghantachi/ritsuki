@@ -1,20 +1,20 @@
 import Head from 'next/head';
 import { GetServerSideProps, NextPage } from 'next/types';
-import { UseQueryResult, useQuery } from 'react-query';
+import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 import { getAnimeById } from '../../../services/detail';
 import { Data } from '../../../types';
 
-const AnimeDetail: NextPage = (props: any) => {
-  const { data }: UseQueryResult<Data, unknown> = useQuery(
-    ['anime', { id: props.data.mal_id, type: 'detail' }],
-    () => getAnimeById({ id: props.data.mal_id })
-  );
+type AnimeDetailProps = {
+  dehydratedState?: DehydratedState;
+  data: Data;
+};
 
+const AnimeDetail: NextPage<AnimeDetailProps> = ({ data }) => {
   return (
     <div>
       <Head>
-        <title>{props.data.title} - Ritsuki</title>
-        <meta name="description" content={props.data.synopsis} />
+        <title>{data.title} - Ritsuki</title>
+        <meta name="description" content={data.synopsis} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <p>{JSON.stringify(data)}</p>
@@ -25,8 +25,20 @@ const AnimeDetail: NextPage = (props: any) => {
 export default AnimeDetail;
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const { data }: any = await getAnimeById({ id: query.id });
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(
+    ['anime', { id: query.id, type: 'detail' }],
+    () => getAnimeById({ id: query.id })
+  );
+  const { data } = queryClient.getQueryData<any>([
+    'anime',
+    { id: query.id, type: 'detail' },
+  ]);
+
   return {
-    props: { data },
+    props: {
+      dehydratedState: dehydrate(queryClient),
+      data: data,
+    },
   };
 };
