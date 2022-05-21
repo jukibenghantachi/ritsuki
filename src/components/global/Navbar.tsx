@@ -16,10 +16,8 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
           <ul className="flex items-center gap-1">
             {['Home', 'Gallery', 'Random', 'About'].map(
               (list: string, id: Key) => (
-                <Link href={`/${list.toLowerCase()}`}>
-                  <li
-                    key={id}
-                    className="cursor-pointer py-1 px-3 text-sm text-gray-700 hover:rounded-md hover:bg-slate-100/80">
+                <Link href={`/${list.toLowerCase()}`} key={id}>
+                  <li className="cursor-pointer py-1 px-3 text-sm text-gray-700 hover:rounded-md hover:bg-slate-100/80">
                     {list}
                   </li>
                 </Link>
