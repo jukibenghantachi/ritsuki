@@ -8,22 +8,22 @@ export const useGetSeasons = () => {
       case 0:
       case 1:
       case 2:
-        setSeason('Winter');
+        setSeason('Winter Season');
         break;
       case 3:
       case 4:
       case 5:
-        setSeason('Spring');
+        setSeason('Spring Season');
         break;
       case 6:
       case 7:
       case 8:
-        setSeason('Summer');
+        setSeason('Summer Season');
         break;
       case 9:
       case 10:
       case 11:
-        setSeason('Fall');
+        setSeason('Fall Season');
         break;
     }
   }, [date]);

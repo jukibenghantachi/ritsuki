@@ -46,7 +46,7 @@ const Home: NextPage = () => {
       <div className="mt-[1.25rem] flex justify-between gap-7">
         <div className="flex w-[70%] flex-col gap-12">
           <SectionLeft
-            name={`${season} Season`}
+            name={season}
             logo={faCalendarDays}
             query={qSeasonsNow}
           />
