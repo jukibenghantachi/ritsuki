@@ -1,5 +1,6 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
 import { Data, DataAnime } from '../../types';
@@ -39,18 +40,22 @@ export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {
         <div className="flex flex-wrap justify-between gap-2">
           {data?.data.map((res: Data, id: Key) => (
             <div className="group cursor-pointer" key={id}>
-              <img
-                src={res.images.webp.large_image_url}
-                className="h-52 w-36 rounded-lg object-cover group-hover:shadow-md"
-              />
-              <div className="mt-2 mb-3 flex w-36 flex-col gap-1">
-                <p className="truncate text-sm font-bold text-slate-700">
-                  {res.title}
-                </p>
-                <p className="truncate text-xs text-slate-700">
-                  {res.genres.map((m) => m.name).toString()}
-                </p>
-              </div>
+              <Link href={'/anime/' + res.mal_id}>
+                <a>
+                  <img
+                    src={res.images.webp.large_image_url}
+                    className="h-52 w-36 rounded-lg object-cover group-hover:shadow-md"
+                  />
+                  <div className="mt-2 mb-3 flex w-36 flex-col gap-1">
+                    <p className="truncate text-sm font-bold text-slate-700">
+                      {res.title}
+                    </p>
+                    <p className="truncate text-xs text-slate-700">
+                      {res.genres.map((m) => m.name).toString()}
+                    </p>
+                  </div>
+                </a>
+              </Link>
             </div>
           ))}
         </div>
