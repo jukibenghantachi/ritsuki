@@ -1,5 +1,6 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { FC, Key, ReactNode } from 'react';
 
 type NavbarProps = {
@@ -15,11 +16,13 @@ export const Navbar: FC<NavbarProps> = ({ children }) => {
           <ul className="flex items-center gap-1">
             {['Home', 'Gallery', 'Random', 'About'].map(
               (list: string, id: Key) => (
-                <li
-                  key={id}
-                  className="cursor-pointer py-1 px-3 text-sm text-gray-700 hover:rounded-md hover:bg-slate-100/80">
-                  {list}
-                </li>
+                <Link href={'/' + list.toLowerCase()}>
+                  <li
+                    key={id}
+                    className="cursor-pointer py-1 px-3 text-sm text-gray-700 hover:rounded-md hover:bg-slate-100/80">
+                    {list}
+                  </li>
+                </Link>
               )
             )}
           </ul>
