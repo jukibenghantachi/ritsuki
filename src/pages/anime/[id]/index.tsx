@@ -1,22 +1,20 @@
 import Head from 'next/head';
-import { NextPage } from 'next/types';
+import { GetServerSideProps, NextPage } from 'next/types';
 import { UseQueryResult, useQuery } from 'react-query';
-import { useQueryPage } from '../../../hooks/useQueryPage';
 import { getAnimeById } from '../../../services/detail';
 import { Data } from '../../../types';
 
-const AnimeDetail: NextPage = () => {
-  const { id } = useQueryPage();
+const AnimeDetail: NextPage = (props: any) => {
   const { data }: UseQueryResult<Data, unknown> = useQuery(
-    ['anime', { id: id, type: 'detail' }],
-    () => getAnimeById({ id })
+    ['anime', { id: props.data.mal_id, type: 'detail' }],
+    () => getAnimeById({ id: props.data.mal_id })
   );
 
   return (
     <div>
       <Head>
-        <title>{data?.title} - Ritsuki</title>
-        <meta name="description" content={data?.synopsis} />
+        <title>{props.data.title} - Ritsuki</title>
+        <meta name="description" content={props.data.synopsis} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <p>{JSON.stringify(data)}</p>
@@ -25,3 +23,10 @@ const AnimeDetail: NextPage = () => {
 };
 
 export default AnimeDetail;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const { data }: any = await getAnimeById({ id: query.id });
+  return {
+    props: { data },
+  };
+};
