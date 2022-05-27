@@ -14,7 +14,7 @@ import {
   getSeasonsNow,
   getTopAnime,
 } from '../../services/home';
-import { useGetSeasons } from '../../hooks/seasons';
+import { useSeasons } from '../../hooks/useSeasons';
 import { DataAnime, Recommendation } from '../../types';
 
 const Home: NextPage = () => {
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
       ['anime', { type: 'recommendations-anime' }],
       getAnimeRecommendations
     );
-  const season = useGetSeasons();
+  const season = useSeasons();
 
   return (
     <div className="bg-background">

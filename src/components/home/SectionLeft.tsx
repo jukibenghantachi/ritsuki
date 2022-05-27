@@ -6,7 +6,7 @@ import { UseQueryResult } from 'react-query';
 import { Data, DataAnime } from '../../types';
 
 type SectionLeftProps = {
-  name: string;
+  name: string | undefined;
   logo: IconProp;
   query: UseQueryResult<DataAnime, unknown>;
 };
