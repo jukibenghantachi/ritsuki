@@ -1,44 +1,61 @@
 import Head from 'next/head';
-import { GetServerSideProps, NextPage } from 'next/types';
-import { dehydrate, DehydratedState, QueryClient } from 'react-query';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next/types';
+import {
+  dehydrate,
+  DehydratedState,
+  QueryClient,
+  useQuery,
+  UseQueryResult,
+} from 'react-query';
+
+import { useQueryPage } from '../../../hooks/useQueryPage';
 import { getAnimeById } from '../../../services/detail';
-import { Data } from '../../../types';
+import { AnimeDetail } from '../../../types';
 
 type AnimeDetailProps = {
   dehydratedState?: DehydratedState;
-  data: Data;
 };
 
-const AnimeDetail: NextPage<AnimeDetailProps> = ({ data }) => {
+const AnimeDetail: NextPage<AnimeDetailProps> = () => {
+  const { id } = useQueryPage();
+  const { data: anime }: UseQueryResult<AnimeDetail, unknown> = useQuery(
+    ['anime', { id, type: 'detail' }],
+    () => getAnimeById({ id }),
+    {
+      enabled: !id,
+    }
+  );
   return (
     <div>
       <Head>
-        <title>{data.title} - Ritsuki</title>
-        <meta name="description" content={data.synopsis} />
+        <title>{anime?.data.title} - Ritsuki</title>
+        <meta name="description" content={anime?.data.synopsis} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>{JSON.stringify(data)}</p>
+      <p>{JSON.stringify(anime)}</p>
     </div>
   );
 };
 
 export default AnimeDetail;
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context.params?.id;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    ['anime', { id: query.id, type: 'detail' }],
-    () => getAnimeById({ id: query.id })
+  await queryClient.prefetchQuery(['anime', { id, type: 'detail' }], () =>
+    getAnimeById({ id })
   );
-  const { data } = queryClient.getQueryData<any>([
-    'anime',
-    { id: query.id, type: 'detail' },
-  ]);
 
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
-      data: data,
     },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
   };
 };
