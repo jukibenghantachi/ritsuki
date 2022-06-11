@@ -2,12 +2,12 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
-import { Recommendation } from '../../types';
+import { AnimeRecommendations, DataRecommendations } from '../../types';
 
 type SectionRightProps = {
   name: string;
   logo: IconProp;
-  query: UseQueryResult<Recommendation, unknown>;
+  query: UseQueryResult<AnimeRecommendations, unknown>;
 };
 
 export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
@@ -32,7 +32,7 @@ export const SectionRight: FC<SectionRightProps> = ({ name, logo, query }) => {
         <p>Loading</p>
       ) : (
         <div className="flex flex-col gap-5">
-          {data?.data.slice(0, 5).map((res, id: Key) => (
+          {data?.data.slice(0, 5).map((res: DataRecommendations, id: Key) => (
             <div key={id} className="flex flex-col gap-5">
               {res.entry.map((e, i: Key) => (
                 <div key={i} className="flex w-full items-center gap-2">

@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
-import { Data, DataAnime } from '../../types';
+import { Data, AnimeLists } from '../../types';
 
 type SectionLeftProps = {
   name: string | undefined;
   logo: IconProp;
-  query: UseQueryResult<DataAnime, unknown>;
+  query: UseQueryResult<AnimeLists, unknown>;
 };
 
 export const SectionLeft: FC<SectionLeftProps> = ({ name, logo, query }) => {

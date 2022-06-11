@@ -15,18 +15,18 @@ import {
   getTopAnime,
 } from '../../services/home';
 import { useSeasons } from '../../hooks/useSeasons';
-import { DataAnime, Recommendation } from '../../types';
+import { AnimeLists, AnimeRecommendations } from '../../types';
 
 const Home: NextPage = () => {
-  const qSeasonsNow: UseQueryResult<DataAnime, unknown> = useQuery(
+  const qSeasonsNow: UseQueryResult<AnimeLists, unknown> = useQuery(
     ['anime', { type: 'seasons-now' }],
     getSeasonsNow
   );
-  const qTopAnime: UseQueryResult<DataAnime, unknown> = useQuery(
+  const qTopAnime: UseQueryResult<AnimeLists, unknown> = useQuery(
     ['anime', { type: 'top-anime' }],
     getTopAnime
   );
-  const qRecommendationAnime: UseQueryResult<Recommendation, unknown> =
+  const qRecommendationAnime: UseQueryResult<AnimeRecommendations, unknown> =
     useQuery(
       ['anime', { type: 'recommendations-anime' }],
       getAnimeRecommendations
