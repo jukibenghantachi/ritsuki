@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next/types';
 import {
   dehydrate,
@@ -7,6 +6,7 @@ import {
   useQuery,
   UseQueryResult,
 } from 'react-query';
+import { NextSeo } from 'next-seo';
 
 import { useQueryPage } from '@/hooks/useQueryPage';
 import { getAnimeById } from '@/services/detail';
@@ -25,13 +25,25 @@ const AnimeDetail: NextPage<AnimeDetailProps> = () => {
       enabled: !id,
     }
   );
+
   return (
     <div>
-      <Head>
-        <title>{anime?.data.title} - Ritsuki</title>
-        <meta name="description" content={anime?.data.synopsis} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <NextSeo
+        title={`${anime?.data?.title} - Ritsuki`}
+        description={anime?.data?.synopsis}
+        openGraph={{
+          url: '@site',
+          title: `${anime?.data?.title} - Ritsuki`,
+          description: anime?.data?.synopsis,
+          images: [{ url: anime?.data?.images.webp.large_image_url || '' }],
+          site_name: 'Ritsuki',
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: anime?.data?.images.webp.large_image_url || '',
+        }}
+      />
       <p>{JSON.stringify(anime)}</p>
     </div>
   );
