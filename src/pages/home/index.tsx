@@ -1,21 +1,21 @@
+import Head from 'next/head';
 import type { NextPage } from 'next';
 import { useQuery, UseQueryResult } from 'react-query';
-import Head from 'next/head';
 import {
   faCalendarDays,
   faStar,
   faTrophy,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { SectionLeft } from '../../components/home/SectionLeft';
-import { SectionRight } from '../../components/home/SectionRight';
+import { SectionLeft } from '@/components/home/SectionLeft';
+import { SectionRight } from '@/components/home/SectionRight';
+import { useSeasons } from '@/hooks/useSeasons';
 import {
-  getAnimeRecommendations,
   getSeasonsNow,
   getTopAnime,
-} from '../../services/home';
-import { useSeasons } from '../../hooks/useSeasons';
-import { AnimeLists, AnimeRecommendations } from '../../types';
+  getAnimeRecommendations,
+} from '@/services/home';
+import { AnimeLists, AnimeRecommendations } from '@/types';
 
 const Home: NextPage = () => {
   const qSeasonsNow: UseQueryResult<AnimeLists, unknown> = useQuery(

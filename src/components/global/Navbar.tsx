@@ -1,7 +1,7 @@
+import { FC, Key, ReactNode } from 'react';
+import Link from 'next/link';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import { FC, Key, ReactNode } from 'react';
 
 type NavbarProps = {
   children: ReactNode;

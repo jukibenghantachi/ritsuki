@@ -1,8 +1,9 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FC, Key } from 'react';
 import { UseQueryResult } from 'react-query';
-import { AnimeRecommendations, DataRecommendations } from '../../types';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { AnimeRecommendations, DataRecommendations } from '@/types';
 
 type SectionRightProps = {
   name: string;

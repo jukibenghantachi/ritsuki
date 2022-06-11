@@ -8,9 +8,9 @@ import {
   UseQueryResult,
 } from 'react-query';
 
-import { useQueryPage } from '../../../hooks/useQueryPage';
-import { getAnimeById } from '../../../services/detail';
-import { AnimeDetail } from '../../../types';
+import { useQueryPage } from '@/hooks/useQueryPage';
+import { getAnimeById } from '@/services/detail';
+import { AnimeDetail } from '@/types';
 
 type AnimeDetailProps = {
   dehydratedState?: DehydratedState;
