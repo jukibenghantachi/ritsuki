@@ -35,13 +35,13 @@ const AnimeDetail: NextPage<AnimeDetailProps> = () => {
           url: '@site',
           title: `${anime?.data?.title} - Ritsuki`,
           description: anime?.data?.synopsis,
-          images: [{ url: anime?.data?.images.webp.large_image_url || '' }],
+          images: [{ url: anime?.data?.images.jpg.large_image_url || '' }],
           site_name: 'Ritsuki',
         }}
         twitter={{
           handle: '@handle',
           site: '@site',
-          cardType: anime?.data?.images.webp.large_image_url || '',
+          cardType: 'summary_large_image',
         }}
       />
       <p>{JSON.stringify(anime)}</p>
@@ -62,6 +62,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 60,
   };
 };
 
